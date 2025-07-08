@@ -1,0 +1,31 @@
+# ---- General ----
+.env
+*.env
+.DS_Store
+*.log
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# ---- Backend (FastAPI) ----
+*/venv/
+*/*.egg-info/
+*/__pycache__/
+*/.mypy_cache/
+*/.pyright/
+*/dist/
+*/build/
+
+# ---- Frontend (React) ----
+*/node_modules/
+*/build/
+*/.env
+*/.DS_Store
+
+# ---- IDEs / Editors ----
+.vscode/
+.idea/
+
+# ---- OS / Misc ----
+*.swp
+*.swo
