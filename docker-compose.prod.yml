@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend - Production
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    container_name: bradboard-backend-prod
+    environment:
+      - ENVIRONMENT=production
+    env_file:
+      - ./backend/.env.prod
+    restart: unless-stopped
+    networks:
+      - bradboard-network
+    depends_on:
+      - caddy
+
+  # Caddy Reverse Proxy - Production
+  caddy:
+    image: caddy:2-alpine
+    container_name: bradboard-caddy-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile.prod:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    networks:
+      - bradboard-network
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  bradboard-network:
+    driver: bridge

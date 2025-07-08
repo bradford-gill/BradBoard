@@ -1,0 +1,7 @@
+# Production Caddyfile for BradBoard
+# Production configuration with SSL
+
+bradboard.blackmore.ai {
+    # Reverse proxy to FastAPI backend
+    reverse_proxy backend:8000
+}
